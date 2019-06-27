@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="HS_ImageClean::parent" title="ImageClean" module="HS_ImageClean" sortOrder="100" resource="HS_ImageClean::parent"/>
+		<add id="HS_ImageClean::image" title="ImageClean Image" module="HS_ImageClean" sortOrder="20" parent="HS_ImageClean::parent" action="imageclean/image" resource="HS_ImageClean::image"/>
+    </menu>
+</config>
