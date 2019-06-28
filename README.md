@@ -3,9 +3,9 @@
 # Product Image Cleaner [M2]
 **hs/module-image-clean**
 
-Deleting a product in Magento does not delete its images stored on server. These images will probably stay there forever clogging up your disk space.
+Deleting a product in Magento does not delete the images it stores on the server. These images will probably stay there forever clogging up your disk space.
 
-Hungersoft's [Product Image Cleaner](https://www.hungersoft.com/p/magento2-unused-product-image-cleaner) extension allows you to delete these unused product images easily from your Magento admin.
+Hungersoft's [Product Image Cleaner](https://www.hungersoft.com/p/magento2-product-image-cleaner) extension allows you to delete these unused product images easily from your Magento admin.
 
 ## Installation
 
