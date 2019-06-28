@@ -12,8 +12,8 @@ class MassDelete extends \Magento\Backend\App\Action
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\Filesystem\Driver\File $file
     ) {
-        $this->_file = $file;
-        $this->_directoryList = $directoryList;
+        $this->file = $file;
+        $this->directoryList = $directoryList;
         parent::__construct($context);
     }
 
@@ -22,7 +22,7 @@ class MassDelete extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $mediaRootDir = $this->_directoryList->getPath('media');
+        $mediaRootDir = $this->directoryList->getPath('media');
 
         $itemIds = $this->getRequest()->getParam('image');
         if (!is_array($itemIds) || empty($itemIds)) {
@@ -32,8 +32,8 @@ class MassDelete extends \Magento\Backend\App\Action
                 foreach ($itemIds as $itemId) {
                     $image = $this->_objectManager->get('HS\ImageClean\Model\Image')->load($itemId);
                     $filePath = $mediaRootDir.'/catalog/product'.$image->getValue();
-                    if ($this->_file->isExists($filePath)) {
-                        $this->_file->deleteFile($filePath);
+                    if ($this->file->isExists($filePath)) {
+                        $this->file->deleteFile($filePath);
                     }
                     $image->delete();
                 }

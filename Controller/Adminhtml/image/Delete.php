@@ -9,8 +9,8 @@ class Delete extends \Magento\Backend\App\Action
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\Filesystem\Driver\File $file
     ) {
-        $this->_file = $file;
-        $this->_directoryList = $directoryList;
+        $this->file = $file;
+        $this->directoryList = $directoryList;
         parent::__construct($context);
     }
 
@@ -21,16 +21,16 @@ class Delete extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $mediaRootDir = $this->_directoryList->getPath('media');
+        $mediaRootDir = $this->directoryList->getPath('media');
         $id = $this->getRequest()->getParam('id');
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             try {
                 $image = $this->_objectManager->get('HS\ImageClean\Model\Image')->load($id);
-                $filePath = $mediaRootDir.'/catalog/product'.$image->getValue();
-                if ($this->_file->isExists($filePath)) {
-                    $this->_file->deleteFile($filePath);
+                $filePath = $mediaRootDir . '/catalog/product' . $image->getValue();
+                if ($this->file->isExists($filePath)) {
+                    $this->file->deleteFile($filePath);
                 }
                 $image->delete();
 
