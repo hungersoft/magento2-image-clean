@@ -1,4 +1,5 @@
-# hs/module-image-clean
+# Product Image Cleaner [M2]
+**hs/module-image-clean**
 
 Deleting a product in Magento does not delete the images stored on server. These images will probably stay there forever clogging up your disk space.
 
