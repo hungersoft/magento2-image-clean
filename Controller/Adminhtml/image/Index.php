@@ -33,8 +33,8 @@ class Index extends \Magento\Backend\App\Action
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('HS_ImageClean::image');
         $resultPage->addBreadcrumb(__('HS'), __('HS'));
-        $resultPage->addBreadcrumb(__('Manage item'), __('Manage Image'));
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Image'));
+        $resultPage->addBreadcrumb(__('Manage item'), __('Manage unused product images'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage unused product images'));
 
         return $resultPage;
     }
