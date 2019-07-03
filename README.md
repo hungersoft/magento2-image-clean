@@ -10,6 +10,7 @@ Hungersoft's [Product Image Cleaner](https://www.hungersoft.com/p/magento2-produ
 ## Installation
 
 ```sh
+composer config repositories.hs-module-all vcs https://github.com/hungersoft/module-all.git
 composer config repositories.hs-module-image-clean vcs https://github.com/hungersoft/module-image-clean.git
 composer require hs/module-image-clean
 
