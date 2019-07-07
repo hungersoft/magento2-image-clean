@@ -14,9 +14,11 @@ composer config repositories.hs-module-all vcs https://github.com/hungersoft/mod
 composer config repositories.hs-module-image-clean vcs https://github.com/hungersoft/module-image-clean.git
 composer require hs/module-image-clean
 
-php bin/magento module:enable HS_ImageClean
+php bin/magento module:enable HS_All HS_ImageClean
 php bin/magento setup:upgrade
 ```
+
+**Note:** Make sure you've installed our Base extension. The above commands already include it, but if you haven't, you can find it [here](https://github.com/hungersoft/module-all)
 
 ## Support
 
