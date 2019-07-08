@@ -5,4 +5,4 @@
     <container name="root" label="Root">
         <block class="HS\ImageClean\Block\Adminhtml\Image\Grid" name="admin.imageclean.image.grid"/>
     </container>
-</layout>
+</page>
