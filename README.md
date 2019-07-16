@@ -11,7 +11,7 @@ Hungersoft's [Product Image Cleaner](https://www.hungersoft.com/p/magento2-produ
 
 ```sh
 composer config repositories.hs-module-all vcs https://github.com/hungersoft/module-all.git
-composer config repositories.hs-module-image-clean vcs https://github.com/hungersoft/module-image-clean.git
+composer config repositories.hs-module-image-clean vcs https://github.com/hungersoft/magento2-image-clean.git
 composer require hs/module-image-clean
 
 php bin/magento module:enable HS_All HS_ImageClean
