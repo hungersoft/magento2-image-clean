@@ -52,16 +52,25 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      * @return $this
      */
     protected function _prepareCollection()
-    {
-        $collection = $this->_imageFactory->create()->getCollection();
-        $collection->getSelect()
+    {        
+        $linkedImagePathCollection = $this->_imageFactory->create()->getCollection();
+        $linkedImagePathCollection->getSelect()
+            ->reset(\Zend_Db_Select::COLUMNS)
+            ->columns(['value'])
             ->joinLeft(
-                ['emgve' => $collection->getTable('catalog_product_entity_media_gallery_value_to_entity')],
+                ['emgve' => $linkedImagePathCollection->getTable('catalog_product_entity_media_gallery_value_to_entity')],
                 'main_table.value_id=emgve.value_id',
                 []
-            )->where('emgve.value_id IS NULL');
-
-        $this->setCollection($collection);
+            )->where('emgve.value_id IS NOT NULL');
+        
+        $unlinkedImageCollection = $this->_imageFactory->create()->getCollection();
+        $unlinkedImageCollection->getSelect()->where(
+            'main_table.value NOT IN (
+                ' . $linkedImagePathCollection->getSelect() . '
+            )'
+        );
+        
+        $this->setCollection($unlinkedImageCollection);
 
         parent::_prepareCollection();
 
