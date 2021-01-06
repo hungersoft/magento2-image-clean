@@ -59,7 +59,7 @@ class Clean extends Command
         );
         
         ProgressBar::setFormatDefinition('custom', ' %current%/%max% -- %message%');
-        $progressBar = new ProgressBar($output, $collection->getSize());
+        $progressBar = new ProgressBar($output, $unlinkedImageCollection->getSize());
         $progressBar->setFormat('custom');
         $progressBar->start();
         foreach ($unlinkedImageCollection as $image) {
