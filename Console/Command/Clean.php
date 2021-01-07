@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
 
 namespace HS\ImageClean\Console\Command;
 
@@ -36,19 +41,28 @@ class Clean extends Command
     ) {
         $mediaRootDir = $this->directoryList->getPath('media');
 
-        $collection = $this->_imageFactory->create()->getCollection();
-        $collection->getSelect()
+        $linkedImagePathCollection = $this->_imageFactory->create()->getCollection();
+        $linkedImagePathCollection->getSelect()
+            ->reset(\Zend_Db_Select::COLUMNS)
+            ->columns(['value'])
             ->joinLeft(
-                ['emgve' => $collection->getTable('catalog_product_entity_media_gallery_value_to_entity')],
+                ['emgve' => $linkedImagePathCollection->getTable('catalog_product_entity_media_gallery_value_to_entity')],
                 'main_table.value_id=emgve.value_id',
                 []
-            )->where('emgve.value_id IS NULL');
+            )->where('emgve.value_id IS NOT NULL');
+        
+        $unlinkedImageCollection = $this->_imageFactory->create()->getCollection();
+        $unlinkedImageCollection->getSelect()->where(
+            'main_table.value NOT IN (
+                ' . $linkedImagePathCollection->getSelect() . '
+            )'
+        );
         
         ProgressBar::setFormatDefinition('custom', ' %current%/%max% -- %message%');
-        $progressBar = new ProgressBar($output, $collection->getSize());
+        $progressBar = new ProgressBar($output, $unlinkedImageCollection->getSize());
         $progressBar->setFormat('custom');
         $progressBar->start();
-        foreach ($collection as $image) {
+        foreach ($unlinkedImageCollection as $image) {
             $filePath = $mediaRootDir.'/catalog/product'.$image->getValue();
             $progressBar->setMessage('Deleting ' . $filePath . '...');
             if ($this->file->isExists($filePath)) {
