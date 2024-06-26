@@ -34,6 +34,6 @@ class Register implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->helper->register('HS_ImageClean', '1.1.1', 'confirm');
+        $this->helper->register('HS_ImageClean', '1.1.2', 'confirm');
     }
 }
