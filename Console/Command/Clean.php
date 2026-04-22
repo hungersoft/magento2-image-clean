@@ -21,6 +21,16 @@ class Clean extends Command
      */
     protected $_imageFactory;
 
+    /**
+     * @var \Magento\Framework\Filesystem\Driver\File
+     */
+    protected $file;
+
+    /**
+     * @var \Magento\Framework\App\Filesystem\DirectoryList
+     */
+    protected $directoryList;
+
     public function __construct(
         \HS\ImageClean\Model\ImageFactory $ImageFactory,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
@@ -72,6 +82,8 @@ class Clean extends Command
             $progressBar->advance();
         }
         $progressBar->finish();
+
+        return \Magento\Framework\Console\Cli::RETURN_SUCCESS;
     }
 
     /**

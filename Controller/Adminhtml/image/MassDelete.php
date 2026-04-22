@@ -7,6 +7,16 @@ namespace HS\ImageClean\Controller\Adminhtml\image;
  */
 class MassDelete extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Magento\Framework\Filesystem\Driver\File
+     */
+    protected $file;
+
+    /**
+     * @var \Magento\Framework\App\Filesystem\DirectoryList
+     */
+    protected $directoryList;
+
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
